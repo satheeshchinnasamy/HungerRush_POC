@@ -137,12 +137,12 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven.surefire.version}</version>
 				<configuration>
-					<includes>
-						<include>**/ParallelRun.java</include>
-					</includes>
-					<parallel>methods</parallel>
-					<threadCount>4</threadCount>
-					<useUnlimitedThreads>false</useUnlimitedThreads>
+					<properties>
+            <property>
+              <name>testrunner</name>
+              <value>src\test\java\testRunners\MyTestRunner.java</value>
+            </property>
+          </properties>
 				</configuration>
 			</plugin>
 
