@@ -24,8 +24,18 @@
 
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 	<dependencies>
-
+		<dependency>
+			<groupId>com.github.ralfstuckert.pdfbox-layout</groupId>
+			<artifactId>pdfbox2-layout</artifactId>
+			<version>0.8.6</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -67,28 +77,6 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/tech.grasshopper/cucumber-pdf-report -->
-		<dependency>
-			<groupId>tech.grasshopper</groupId>
-			<artifactId>cucumber-pdf-report</artifactId>
-			<version>2.2.1</version>
-		</dependency>
-
-
-		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>6.14.3</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-testng</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -103,21 +91,31 @@
 			<version>4.1.2</version>
 		</dependency>
 
-		<dependency>
-			<groupId>com.github.ralfstuckert.pdfbox-layout</groupId>
-			<artifactId>pdfbox2-layout</artifactId>
-			<version>0.8.6</version>
+	<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>1.2.5</version>
 		</dependency>
-
-
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-jvm-deps</artifactId>
+			<version>1.0.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>1.2.5</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>jitpack.io</id>
-			<url>https://jitpack.io</url>
-		</repository>
-	</repositories>
 	<build>
 		<plugins>
 
@@ -137,48 +135,13 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven.surefire.version}</version>
 				<configuration>
-					<properties>
-            <property>
-              <name>testrunner</name>
-              <value>src\test\java\testRunners\MyTestRunner.java</value>
-            </property>
-          </properties>
+					<includes>
+						<exclude>**/MyTestRunner.java</exclude>
+					</includes>
 				</configuration>
 			</plugin>
-
-			<plugin>
-				<groupId>tech.grasshopper</groupId>
-				<artifactId>cucumber-pdf-plugin</artifactId>
-				<version>1.4.2</version>
-				<executions>
-					<execution>
-						<id>report</id>
-						<phase>post-integration-test</phase>
-						<goals>
-							<goal>pdfreport</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<cucumberJsonReportDirectory>${project.build.directory}/json-report</cucumberJsonReportDirectory>
-					<cucumberPdfReportDirectory>pdf-report</cucumberPdfReportDirectory>
-					<strictCucumber6Behavior>true</strictCucumber6Behavior>
-				</configuration>
-			</plugin>
-
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-failsafe-plugin</artifactId> 
-				<version>3.0.0-M3</version> <executions> <execution> <goals> <goal>integration-test</goal> 
-				</goals> <configuration> UNCOMMENT - To add any exclusions if required <excludes> 
-				<exclude>**/*IT*.java</exclude> </excludes> <includes> UNCOMMENT BELOW LINE 
-				- To execute feature files with a single runner <include>**/MyTestRunner.java</include> 
-				UNCOMMENT BELOW LINE - To execute feature files with multiple runners <include>**/*Runner.java</include> 
-				</includes> UNCOMMENT BELOW 3 LINES - To execute using parallel or combination 
-				option <parallel>methods</parallel> <threadCount>4</threadCount> <perCoreThreadCount>true</perCoreThreadCount> 
-				UNCOMMENT BELOW 3 LINES - To execute using forking or combination option 
-				<forkCount>2</forkCount> <reuseForks>true</reuseForks> <reportsDirectory>${project.build.directory}/failsafe-reports_${surefire.forkNumber}</reportsDirectory> 
-				</configuration> </execution> </executions> </plugin> -->
-
 
 		</plugins>
 	</build>
 </project>
+
