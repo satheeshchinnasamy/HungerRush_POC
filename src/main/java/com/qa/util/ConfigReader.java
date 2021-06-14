@@ -13,7 +13,7 @@ public class ConfigReader {
 		prop=new Properties();
 		
 		try {
-			FileInputStream inputStream=new FileInputStream("C:\\Users\\Satheesh Chinnasamy\\eclipse-workspace\\HungerRush_POM_BDD\\src\\test\\resources\\config.properties");
+			FileInputStream inputStream=new FileInputStream("C:\\Users\\Satheesh Chinnasamy\\eclipse-workspace\\HungerRush_POM_BDD\\src\\main\\resources\\config.properties");
 			prop.load(inputStream);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
