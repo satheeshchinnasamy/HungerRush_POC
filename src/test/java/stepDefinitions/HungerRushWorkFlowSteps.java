@@ -19,18 +19,21 @@ public class HungerRushWorkFlowSteps {
 	@Given("user is in Login page")
 	public void user_is_in_login_page() {
 		config=new ConfigReader();
-		   DriverFactory.getDriver().get(config.init_properties().getProperty("url")); 
+		   //DriverFactory.getDriver().get(config.init_properties().getProperty("url"));
+		DriverFactory.getDriver().get("http://enterprise.hunger-rush.com/");
 	}
 
 	@When("user enters the valid username")
 	public void user_enters_the_valid_username() {
 		config=new ConfigReader();
-		loginpage.enterUserName(config.init_properties().getProperty("username"));
+		//loginpage.enterUserName(config.init_properties().getProperty("username"));
+		loginpage.enterUserName("ReventinAdminTest@hungerrush.com");
 	}
 	@And("user enter the valid password")
 	public void user_enter_the_valid_password() {
 		config=new ConfigReader();
-		   loginpage.enterPassword(config.init_properties().getProperty("password"));
+		   //loginpage.enterPassword(config.init_properties().getProperty("password"));
+		   loginpage.enterPassword("Test@123");
 	}
 	@And("user clicks the loginbtn")
 	public void user_clicks_the_loginbtn() {
